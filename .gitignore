@@ -1,3 +1,4 @@
 .vs/
-FilmRecommendator/bin/
-FilmRecommendator/obj/
+.env
+bin/
+obj/
