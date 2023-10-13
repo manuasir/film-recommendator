@@ -1,0 +1,7 @@
+# Folders from VS2022
+.vs/
+bin/
+obj/
+
+# This file contains private credentials and sensible information
+.env
