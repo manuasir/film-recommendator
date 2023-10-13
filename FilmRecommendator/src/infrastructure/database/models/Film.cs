@@ -22,6 +22,7 @@ namespace Models
         public string Genre { get; set; }
 
         [BsonElement("Summary")]
+        [BsonIgnoreIfNull]
         public string Summary { get; set; }
     }
 }

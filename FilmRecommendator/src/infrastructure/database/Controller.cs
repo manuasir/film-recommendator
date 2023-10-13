@@ -19,7 +19,7 @@ namespace Controllers
         {
             var database = client.GetDatabase("FilmRecommendator");
 
-            var collection = database.GetCollection<Film>("films");
+            var collection = database.GetCollection<Film>("Films");
 
             var newFilm = new Film
             {

@@ -1,5 +1,4 @@
 ﻿using dotenv.net;
-using MongoDB.Driver;
 using Controllers;
 
 namespace Program
