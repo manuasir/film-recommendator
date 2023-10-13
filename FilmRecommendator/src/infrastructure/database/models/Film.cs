@@ -1,26 +1,27 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Database
+namespace Models
 {
     public class Film
     {
         [BsonId]
-        public ObjectId Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
 
-        [BsonElement("name")]
-        public string name { get; set; }
+        [BsonElement("Title")]
+        public string Title { get; set; }
 
-        [BsonElement("year")]
-        public int year { get; set; }
+        [BsonElement("Year")]
+        public int Year { get; set; }
 
-        [BsonElement("director")]
-        public string director { get; set; }
+        [BsonElement("Director")]
+        public string Director { get; set; }
 
-        [BsonElement("genre")]
-        public string genre { get; set; }
+        [BsonElement("Genre")]
+        public string Genre { get; set; }
 
-        [BsonElement("summary")]
-        public string summary { get; set; }
+        [BsonElement("Summary")]
+        public string Summary { get; set; }
     }
 }

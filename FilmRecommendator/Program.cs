@@ -1,10 +1,9 @@
-﻿using System;
-using MongoDB.Driver;
-using dotenv.net;
+﻿using dotenv.net;
+using Controllers;
 
-namespace FilmRecommendator
+namespace Program
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -12,9 +11,12 @@ namespace FilmRecommendator
             {
                 DotEnv.Load();
 
-                string mongoURI = Environment.GetEnvironmentVariable("MONGODB_URI");
+                string mongoURI = Environment.GetEnvironmentVariable("mongoURI");
 
-                MongoClient client = new MongoClient(mongoURI);
+                Controller ctrl = new Controller(mongoURI);
+
+                ctrl.clientConnection();
+
             }
             catch (Exception e)
             {
