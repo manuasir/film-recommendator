@@ -1,9 +1,10 @@
 ﻿using dotenv.net;
+using MongoDB.Driver;
 using Controllers;
 
 namespace Program
 {
-    public class Program
+    class Program
     {
         static void Main(string[] args)
         {
@@ -14,8 +15,6 @@ namespace Program
                 string mongoURI = Environment.GetEnvironmentVariable("mongoURI");
 
                 Controller ctrl = new Controller(mongoURI);
-
-                ctrl.clientConnection();
 
             }
             catch (Exception e)
