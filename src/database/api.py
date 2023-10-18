@@ -1,3 +1,6 @@
+import requests
+from dotenv import load_dotenv
+from index import conn
 from models.film import Film
 import os
 
