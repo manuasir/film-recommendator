@@ -6,3 +6,24 @@ Well, we've got you. With this app, you can have a few film recommendations base
 
 ## PURPOSE
 This app is created mainly as a practice excercise in Python and to save time when deciding on a movie to watch.
+
+# Installation
+
+To run this project using Docker, follow these steps:
+- Ensure you have Docker installed on your system.
+- Clone the project repository:
+
+```bash
+   git clone https://github.com/tu_usuario/tu_proyecto.git
+```
+
+
+# Used technology
+- Python programming language.
+- MongoDB data base.
+- Dockerfile.
+
+## Objetives
+
+- [ ] Use CronJob to keep the database updated periodically.
+- [ ] Create a GitHub Actions workflow to automate building Docker images and uploading them to Docker Hub when a PR merge is made to the master  branch.
