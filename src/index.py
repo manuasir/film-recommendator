@@ -1,13 +1,12 @@
-from database import connection
+from database import api
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
-conn = connection.Database(os.getenv("DB_URI"), os.getenv("DB_NAME"), os.getenv("DB_COLL"))
+api_instance = api.API(os.getenv("API_KEY"), "https://api.themoviedb.org/3", 1, 5)
 
 try:
-    conn
-    print("Connected!")
+    api_instance.insert_films()
 except Exception as e:
     print(f"Error: {e}")
