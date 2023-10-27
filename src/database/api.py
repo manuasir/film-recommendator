@@ -41,3 +41,36 @@ class API:
                         print("Datos insertados en la base de datos.")
         except Exception as e:
             print(f"Error: {e}")
+    
+
+    def recommend_film(self):
+         try:
+             
+             #coneccion a BD
+             conn = connection.Database(os.getenv("DB_URI"), os.getenv("DB_NAME"), os.getenv("DB_COLL"))
+
+             #Obtener una lisa de todas las peliculas
+             movies = conn.coll.find()
+
+             #solicitar input del usuario
+             user_input = input("Ingrese el titulo de su pelicula preferida")
+
+             #Realizar una busqueda en la base de dato para encontrar peliculas similares
+             similar_movies = []
+
+             for movie in movies:
+                  if user_input in movie["year"] and user_input.lower() in movie["genre"]:
+                       similar_movies.append(movie)
+            
+            #Mostrar la recomendaccion al usuario
+             if similar_movies:
+              print("===============Peliculas Recomendadas====================")
+              for movie in similar_movies:
+                  print(movie["title"])
+             else:
+                 print("No se encuantran ninguna pelicula de su gusto en nuestra coleccion")
+
+         except Exception as e:
+             print(f"A ocurrido un error: {e}")
+
+
