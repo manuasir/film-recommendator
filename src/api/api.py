@@ -11,7 +11,7 @@ class API:
         self.start_id = start_id
         self.end_id = end_id
 
-    def insert_films(self):
+    def store_films(self):
         try:
             # Conexión con MongoDB
             conn = connection.Database(
