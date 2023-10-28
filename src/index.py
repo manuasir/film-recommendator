@@ -1,4 +1,4 @@
-from database import api
+from api import api
 from dotenv import load_dotenv
 import os
 
