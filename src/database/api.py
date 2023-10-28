@@ -41,36 +41,42 @@ class API:
                         print("Datos insertados en la base de datos.")
         except Exception as e:
             print(f"Error: {e}")
-    
-
-    def recommend_film(self):
-         try:
-             
-             #coneccion a BD
-             conn = connection.Database(os.getenv("DB_URI"), os.getenv("DB_NAME"), os.getenv("DB_COLL"))
-
-             #Obtener una lisa de todas las peliculas
-             movies = conn.coll.find()
-
-             #solicitar input del usuario
-             user_input = input("Ingrese el titulo de su pelicula preferida")
-
-             #Realizar una busqueda en la base de dato para encontrar peliculas similares
-             similar_movies = []
-
-             for movie in movies:
-                  if user_input in movie["year"] and user_input.lower() in movie["genre"]:
-                       similar_movies.append(movie)
             
-            #Mostrar la recomendaccion al usuario
-             if similar_movies:
-              print("===============Peliculas Recomendadas====================")
-              for movie in similar_movies:
-                  print(movie["title"])
-             else:
-                 print("No se encuantran ninguna pelicula de su gusto en nuestra coleccion")
+            
+class recommend_film:
+         def __init__(self, api_key, base_url):
+              self.api_key = api_key
+              self.base_url = base_url
+              self.params = {"api_key": self.api_key}
 
-         except Exception as e:
-             print(f"A ocurrido un error: {e}")
+         def recommendation(self):
+              try:
+                   #coneccion a la BD
+                   conn = connection.Database(os.getenv("DB_URI"), os.getenv("DB_NAME", os.getenv("DB_COLL")))
 
+                   #solicitar input del usuario
+                   user_input = input("Ingrese los titulos de sus 3 peliculas preferidas: "), input("2 pelicula preferida"), input("3 pelicula preferida")
 
+                   #obtener director y año de la peliculas elegidas por el usuario
+                   user_movie = conn.coll.find_one({"title": user_input})
+                   if user_movie:
+                        year = user_movie.get("year")
+                        director = user_movie.get("director")
+                   #realizar una query para encontrar peliculas similares en BD 
+                   query = {
+                        "$and":[
+                             {"director": director},
+                             {"year" : year}
+                        ]
+                   }
+                   similar_movies = conn.coll.find(query)
+
+                   #mostrar resultados al usuario 
+                   if similar_movies:
+                        print("=====================Peliculas Recomendadas====================")
+                        for movie in similar_movies:
+                             print(movie["title"])
+                   else:
+                        print("No se ah encontrado ninguna pelicula de su interes en nuestra coleccion")
+              except Exception as e:
+                   print(f"Error ocasionado por: {e}")
