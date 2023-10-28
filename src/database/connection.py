@@ -8,4 +8,3 @@ class Database:
 
   def query_store_films(self, obj):
     return self.coll.insert_one(obj)
-  
