@@ -18,7 +18,7 @@ class API:
         # solicitud a la API de TMDb para obtener créditos de una película
         credit = self.get_credit_response(movie_id)
         if detail or credit is not None:
-        # Condicionar inserción de documento según ID
+          # Condicionar inserción de documento según ID
           if not self.conn.query_check_id({"id": detail["id"]}):
             # Crear un objeto Film con los datos necesarios
             sample = film.Film(
